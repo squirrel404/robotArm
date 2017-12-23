@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./mdui_0.3.0/css/mdui.min.css">
+    <title>demo</title>
+    <style>
+            .control{
+                margin:auto 50px auto 50px;
+                padding-top: 20px;
+            }
+            .control label{
+                margin-bottom: 20px;
+            }
+           
+            #main-drawer{
+                top:89px;
+                left:30px;
+                width:200px;
+            }
+            .mdui-list li{
+                margin-bottom:20px;
+            }
+        </style>
+</head>
+
+<body class="mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink mdui-loaded mdui-drawer-body-left" style="">
+    <header class="mdui-appbar mdui-appbar-fixed">
+        <div class="mdui-toolbar mdui-color-theme">
+        <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-drawer="{target: '#main-drawer', swipe: true}"><i class="mdui-icon material-icons">menu</i></span>
+        <a href="./" class="mdui-typo-headline mdui-hidden-xs">Double</a>
+                <p class="mdui-typo-title">多平台控制的智能机械臂系统</p>
+            <div class="mdui-toolbar-spacer"></div>
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">more_vert</i></a>
+        </div>
+    </header>
+                
+    <div class="mdui-drawer mdui-drawer-open" id="main-drawer">
+        <div class="mdui-collapse-item-header">
+            <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">settings</i>
+            <h3 class=" mdui-text-color-blue" style="display:inline">设置</h3>  
+        </div>
+     <ul class="mdui-list">
+        <!--左边弹出菜单-->
+        <li>
+            <span>COM Port : &nbsp</span>
+            <select class="mdui-select" id="item1" mdui-select>
+                <option value="COM1">COM1</option>
+                <option value="COM2">COM2</option>
+                <option value="COM3">COM3</option>
+                <option value="COM4" selected>COM4</option>
+                <option value="COM5">COM5</option>
+                <option value="COM6">COM6</option>
+                <option value="COM7">COM7</option>
+            </select>
+        </li>
+        <li >
+            <span>Baud Rate : &nbsp</span>
+            <select class="mdui-select" id="item2" mdui-select>
+                <option value="2400" >2400</option>
+                <option value="4800">4800</option>
+                <option value="7200" >7200</option>
+                <option value="9600" selected>9600</option>
+                <option value="14400">14400</option>
+                <option value="19200">19200</option>
+                <option value="38400">38400</option>
+                <option value="57200">57200</option>
+                <option value="115200">115200</option>
+                
+            </select>
+        </li>
+        <li >
+            <span>Data Bits : &nbsp</span>
+            <select class="mdui-select" mdui-select>
+                <option value="5" >5</option>
+                <option value="6" >6</option>
+                <option value="7" >7</option>
+                <option value="8" selected>8</option>
+            </select>
+        </li>
+        <li >
+            <span>Parity : &nbsp</span>
+            <select class="mdui-select" mdui-select>
+                <option value="none" selected >None</option>
+                <option value='odd' >Odd</option>
+                <option value='even' >Even</option>
+                <option value='mark' >Mark</option>
+                <option value="space" >Space</option>
+            </select>
+        </li>
+        <li >
+            <span>Stop Bits : &nbsp</span>
+            <select class="mdui-select" mdui-select>
+                <option value="1" >1</option>
+                <option value="2" >2</option>
+                <option value="1.5" >1.5</option>
+                <option value="none" selected >None</option>
+            </select>
+        </li>
+        
+
+        
+        <button id="connect" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme">连接</button>
+       <!--  <button id="disconnect" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-red">断开连接</button> -->
+    </div>
+    <div class="mdui-container-fluid">
+            <!-- main-->
+            <div>   
+                <h3 class="doc-title mdui-text-color-theme">状态:<span id="status1">未连接</span></h3>
+                <p class="mdui-text-color-indigo">滑动滑块控制舵机角度</p>
+            </div>
+            <div class="control" id='servo_control'>
+                <span>舵机0: </span>
+                <label class="mdui-slider mdui-slider-discrete" id="con0">
+                    <input id="servo0" type="range" step="1" min="0" max="180" value='90'/>
+                </label>
+                <span>舵机1:</span>
+                <label class="mdui-slider mdui-slider-discrete" id="con1">
+                    <input id="servo1" type="range" step="1" min="0" max="180" value='170'/>
+                </label>
+                <span>舵机2: </span>
+                <label class="mdui-slider mdui-slider-discrete" id="con2">
+                    <input id="servo2" type="range" step="1" min="0" max="180" value='30'/>
+                </label>
+                <span>舵机3: </span>
+                <label class="mdui-slider mdui-slider-discrete" id="con3">
+                    <input id="servo3" type="range" step="1" min="0" max="180" value='45'/>
+                </label>
+                <span>舵机4: </span>
+                <label class="mdui-slider mdui-slider-discrete" id="con4">
+                    <input id="servo4" type="range" step="1" min="0" max="180" value='20'/>
+                </label>
+                <span>舵机5: </span>
+                <label class="mdui-slider mdui-slider-discrete" id="con5">
+                    <input id="servo5" type="range" step="1" min="0" max="180" value='90'/>
+                </label>
+                
+            </div>
+    
+        </div>
+        
+    
+    
+<script src="./mdui_0.3.0/js/mdui.min.js"></script>
+<script src="./socket.io/socket.io.js"></script>
+<script>
+    
+    var servos=[];
+    var a=document.getElementById("servo_control");
+    var slider = a.getElementsByTagName('input');
+    var connected = false;
+    
+    var connect_btn = document.getElementById("connect");
+    var disconnect_btn = document.getElementById("disconnect");
+    var portName = document.getElementById("item1").value;
+    var baudRate = document.getElementById("item2").value;
+    var connectStatus = document.getElementById('status1');
+    
+    
+    var init = function(){
+        for(var i=0;i<6;i++){
+            servos[i]={
+                number: i,
+                pos: slider[i].value
+            };
+        };
+        
+        if(connected){
+            connect_btn.setAttribute('disabled',true);
+            connectStatus.innerText = '已连接';
+        }
+
+        
+    } 
+    
+
+        
+        
+        //连接服务器
+	  var socket = io.connect('http://localhost:8080');
+	  socket.on('server succeed', function (data) {
+        console.log(data);
+        if(data.status){
+            connected = true;
+        }
+        socket.emit('client succeed', { client: 'succeed' });
+        //初始化
+        init();
+
+        
+	    //发送串口信息
+	    connect_btn.addEventListener('click', function () {
+            console.log(portName);
+            console.log(baudRate);
+	    	socket.emit('serialPortConnect',{portName: portName, baudRate: baudRate});
+	    });
+        //接收串口连接成功的消息
+        socket.on('spIsConnected',function(data){
+            console.log(data);
+            if(data.status = true){
+                connected = true;
+                connectStatus.innerText = '已连接';
+                connect_btn.setAttribute('disabled',true);
+            }else{
+                connectStatus.innerText = '未连接';
+            }
+            
+            //如果已经连接成功,调整端口选择框，把连接按钮置为不可点击状态
+        });
+
+        //断开连接
+        /* disconnect_btn.addEventListener('click', function () {
+            if(connected){
+                socket.emit('disconnect',{disconnect:true});
+                connected = false;
+                connect_btn.setAttribute('disabled',false);
+                connectStatus.innerText = '未连接';
+            }else{
+                alert('当前未连接！');
+            }
+        });
+ */
+
+        //监测滑块实时变化，每次滑动都向服务发送舵机角度数据
+        for(let i=0;i<6;i++){
+            slider[i].onmousedown = function (evt) {
+                var that = this;
+                document.onmouseup = function (evt) {
+                    if(connected){
+                        console.log(i,that.value);
+                        window.servos[i].pos = that.value;
+                        socket.emit('servosUpdata', servos[i]); 
+                        document.onmouseup = null;
+                    }else{
+                        alert("当前未连接串口！请重试")
+                    }
+                   
+                }
+            }
+        }
+        
+	    
+	  });
+	      
+   
+ </script>
+</body>
+</html>
